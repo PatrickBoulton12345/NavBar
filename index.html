@@ -22,16 +22,21 @@
 
         .lfg-navbar {
             background-color: #79CAC4;
-            padding: 0 32px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 56px;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             position: sticky;
             top: 0;
             z-index: 9999;
             width: 100%;
+        }
+
+        .lfg-navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
         }
 
         .lfg-navbar-logo {
@@ -45,9 +50,8 @@
         .lfg-navbar-links {
             display: flex;
             align-items: center;
-            gap: 24px;
+            gap: 20px;
             list-style: none;
-            flex-shrink: 0;
         }
 
         .lfg-navbar-links a {
@@ -206,10 +210,6 @@
 
         /* Mobile styles */
         @media (max-width: 768px) {
-            .lfg-navbar {
-                padding: 0 20px;
-            }
-
             .lfg-navbar-hamburger {
                 display: block;
             }
@@ -249,21 +249,23 @@
 
     <!-- ===== LFG NAVBAR - START ===== -->
     <nav class="lfg-navbar">
-        <a href="https://lookingforgrowth.uk" class="lfg-navbar-logo">LFG</a>
-        <button class="lfg-navbar-hamburger" id="lfg-hamburger" aria-label="Open menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <ul class="lfg-navbar-links">
-            <li><a href="https://lookingforgrowth.uk/about-us">About us</a></li>
-            <li><a href="https://lookingforgrowth.uk/campaigns">Our campaigns</a></li>
-            <li><a href="https://lookingforgrowth.uk/get-involved">Get involved</a></li>
-            <li><a href="https://dashboards.lookingforgrowth.uk/">Dashboards</a></li>
-            <li><a href="https://lookingforgrowth.uk/events">Events</a></li>
-            <li><a href="https://merch.lookingforgrowth.uk/">Merch</a></li>
-            <li><a href="https://lookingforgrowth.uk/donate" class="lfg-navbar-donate">Donate</a></li>
-        </ul>
+        <div class="lfg-navbar-inner">
+            <a href="https://lookingforgrowth.uk" class="lfg-navbar-logo">LFG</a>
+            <button class="lfg-navbar-hamburger" id="lfg-hamburger" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="lfg-navbar-links">
+                <li><a href="https://lookingforgrowth.uk/about-us">About us</a></li>
+                <li><a href="https://lookingforgrowth.uk/campaigns">Our campaigns</a></li>
+                <li><a href="https://lookingforgrowth.uk/get-involved">Get involved</a></li>
+                <li><a href="https://dashboards.lookingforgrowth.uk/">Dashboards</a></li>
+                <li><a href="https://lookingforgrowth.uk/events">Events</a></li>
+                <li><a href="https://merch.lookingforgrowth.uk/">Merch</a></li>
+                <li><a href="https://lookingforgrowth.uk/donate" class="lfg-navbar-donate">Donate</a></li>
+            </ul>
+        </div>
     </nav>
 
     <!-- Mobile slide-out panel -->
