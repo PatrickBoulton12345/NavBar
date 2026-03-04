@@ -6,9 +6,15 @@
     <title>LFG Navigation Bar</title>
     <style>
         /* ===== LFG NAVBAR STYLES - START ===== */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-        *, *::before, *::after {
+        .lfg-navbar *,
+        .lfg-navbar *::before,
+        .lfg-navbar *::after,
+        .lfg-mobile-panel *,
+        .lfg-mobile-panel *::before,
+        .lfg-mobile-panel *::after,
+        .lfg-mobile-overlay * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -16,7 +22,6 @@
 
         .lfg-navbar {
             background-color: #8FBCAB;
-            border-radius: 0 0 16px 16px;
             padding: 0 32px;
             display: flex;
             align-items: center;
@@ -77,44 +82,130 @@
             border: none;
             cursor: pointer;
             padding: 4px;
+            z-index: 10001;
         }
 
         .lfg-navbar-hamburger span {
             display: block;
-            width: 24px;
+            width: 26px;
             height: 2.5px;
             background-color: #1a1a1a;
-            margin: 5px 0;
-            border-radius: 2px;
+            margin: 6px 0;
+            border-radius: 1px;
             transition: transform 0.3s, opacity 0.3s;
         }
 
-        .lfg-navbar-hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .lfg-navbar-hamburger.active span:nth-child(2) {
+        /* ---- Mobile slide-out panel ---- */
+        .lfg-mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 10000;
             opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .lfg-navbar-hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
+        .lfg-mobile-overlay.open {
+            display: block;
+            opacity: 1;
+        }
+
+        .lfg-mobile-panel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 75%;
+            max-width: 360px;
+            height: 100%;
+            background: #ffffff;
+            z-index: 10001;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            overflow-y: auto;
+        }
+
+        .lfg-mobile-panel.open {
+            transform: translateX(0);
+        }
+
+        .lfg-mobile-panel-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #1a1a1a;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .lfg-mobile-panel-nav {
+            list-style: none;
+            padding: 56px 24px 0;
+            flex: 1;
+        }
+
+        .lfg-mobile-panel-nav li {
+            margin-bottom: 0;
+        }
+
+        .lfg-mobile-panel-nav a {
+            display: block;
+            padding: 14px 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .lfg-mobile-panel-nav a:hover {
+            opacity: 0.6;
+        }
+
+        .lfg-mobile-panel-footer {
+            padding: 24px;
+            padding-bottom: 40px;
+        }
+
+        .lfg-mobile-panel-footer a {
+            display: block;
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-decoration: none;
+            padding: 8px 0;
+            border-bottom: 3px solid #D4652C;
+            width: fit-content;
+            margin-bottom: 12px;
+            transition: opacity 0.2s;
+        }
+
+        .lfg-mobile-panel-footer a:hover {
+            opacity: 0.6;
+        }
+
+        .lfg-mobile-panel-footer a::after {
+            content: ' \2192';
         }
 
         /* Mobile styles */
         @media (max-width: 768px) {
             .lfg-navbar {
                 padding: 0 20px;
-                flex-wrap: wrap;
-                height: auto;
-                min-height: 56px;
-            }
-
-            .lfg-navbar > .lfg-navbar-logo,
-            .lfg-navbar > .lfg-navbar-hamburger {
-                height: 56px;
-                display: flex;
-                align-items: center;
             }
 
             .lfg-navbar-hamburger {
@@ -123,37 +214,13 @@
 
             .lfg-navbar-links {
                 display: none;
-                flex-direction: column;
-                width: 100%;
-                gap: 0;
-                padding-bottom: 16px;
-            }
-
-            .lfg-navbar-links.open {
-                display: flex;
-            }
-
-            .lfg-navbar-links li {
-                width: 100%;
-            }
-
-            .lfg-navbar-links a {
-                display: block;
-                padding: 12px 0;
-                font-size: 16px;
-                border-top: 1px solid rgba(0, 0, 0, 0.08);
-            }
-
-            .lfg-navbar-donate {
-                display: inline-block;
-                margin-top: 8px;
-                text-align: center;
             }
         }
         /* ===== LFG NAVBAR STYLES - END ===== */
 
         /* Demo page body styling (not part of the navbar) */
         body {
+            margin: 0;
             background-color: #f5f0eb;
             font-family: 'Inter', sans-serif;
         }
@@ -181,12 +248,12 @@
     <!-- ===== LFG NAVBAR - START ===== -->
     <nav class="lfg-navbar">
         <a href="https://lookingforgrowth.uk" class="lfg-navbar-logo">LFG</a>
-        <button class="lfg-navbar-hamburger" onclick="this.classList.toggle('active'); document.getElementById('lfg-nav-links').classList.toggle('open')" aria-label="Toggle menu">
+        <button class="lfg-navbar-hamburger" id="lfg-hamburger" aria-label="Open menu">
             <span></span>
             <span></span>
             <span></span>
         </button>
-        <ul class="lfg-navbar-links" id="lfg-nav-links">
+        <ul class="lfg-navbar-links">
             <li><a href="https://lookingforgrowth.uk/about-us">About us</a></li>
             <li><a href="https://lookingforgrowth.uk/campaigns">Our campaigns</a></li>
             <li><a href="https://lookingforgrowth.uk/get-involved">Get involved</a></li>
@@ -196,6 +263,48 @@
             <li><a href="https://lookingforgrowth.uk/donate" class="lfg-navbar-donate">Donate</a></li>
         </ul>
     </nav>
+
+    <!-- Mobile slide-out panel -->
+    <div class="lfg-mobile-overlay" id="lfg-overlay"></div>
+    <div class="lfg-mobile-panel" id="lfg-panel">
+        <button class="lfg-mobile-panel-close" id="lfg-panel-close" aria-label="Close menu">&times;</button>
+        <ul class="lfg-mobile-panel-nav">
+            <li><a href="https://lookingforgrowth.uk/about-us">About us</a></li>
+            <li><a href="https://lookingforgrowth.uk/campaigns">Our campaigns</a></li>
+            <li><a href="https://lookingforgrowth.uk/get-involved">Get involved</a></li>
+            <li><a href="https://dashboards.lookingforgrowth.uk/">Dashboards</a></li>
+            <li><a href="https://lookingforgrowth.uk/events">Events</a></li>
+        </ul>
+        <div class="lfg-mobile-panel-footer">
+            <a href="https://lookingforgrowth.uk/donate">donate</a>
+            <a href="https://merch.lookingforgrowth.uk/">buy our merch</a>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            var hamburger = document.getElementById('lfg-hamburger');
+            var panel = document.getElementById('lfg-panel');
+            var overlay = document.getElementById('lfg-overlay');
+            var closeBtn = document.getElementById('lfg-panel-close');
+
+            function openMenu() {
+                panel.classList.add('open');
+                overlay.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMenu() {
+                panel.classList.remove('open');
+                overlay.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            hamburger.addEventListener('click', openMenu);
+            closeBtn.addEventListener('click', closeMenu);
+            overlay.addEventListener('click', closeMenu);
+        })();
+    </script>
     <!-- ===== LFG NAVBAR - END ===== -->
 
     <!-- Demo content to show navbar in context -->
