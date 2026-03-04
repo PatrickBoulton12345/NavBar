@@ -26,7 +26,7 @@ Add the Looking for Growth (LFG) navigation bar to the top of this page. Here ar
 7. Donate → https://lookingforgrowth.uk/donate (styled as a pill button)
 
 **Desktop visual design:**
-- Background colour: #8FBCAB (sage/seafoam green)
+- Background colour: #79CAC4 (teal green)
 - No border-radius — completely rectangular, flush with page edges
 - Height: 56px
 - Font: Inter (import from Google Fonts), fallback to system sans-serif
